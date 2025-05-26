@@ -64,9 +64,9 @@ export default function TshirtView() {
     <>
       <h1>Tshirt view </h1>
       <p>{id}</p>
-      <p>Tshirt size: {Tshirt.size}</p>
+      <p>Customer: {Tshirt.customer}</p>
       <p>Tshirt color: {Tshirt.color}</p>
-      <p>Tshirt material: {Tshirt.material}</p>
+      <p>Tshirt size: {Tshirt.size}</p>
       <p>Tshirt text: {Tshirt.text}</p>
       <p>Tshirt logo: {Tshirt.logo}</p>
       <form>

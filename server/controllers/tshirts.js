@@ -35,10 +35,10 @@ exports.getTshirtById = async (req, res, next) => {
 exports.createTshirt = async (req, res, next) => {  
     try {
         const data = new Tshirt({
-            size: req.body.size,
+            customer: req.body.customer,
             color: req.body.color,
             text: req.body.text,
-            material: req.body.material,
+            size: req.body.size,
             logo: req.body.logo,
         })
         const result = await data.save();
@@ -58,10 +58,11 @@ exports.createTshirt = async (req, res, next) => {
 exports.updateTshirt = async (req, res, next) => {
     try {
         const data ={
-            name: req.body.name,
-            brand: req.body.brand,
+            customer: req.body.customer,
             color: req.body.color,
-            price: req.body.price,
+            text: req.body.text,
+            size: req.body.size,
+            logo: req.body.logo,
         }
         const result = await Tshirt.findByIdAndUpdate(req.params.id, data);
         if (result) {

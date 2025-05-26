@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createTshirt } from "../../models/Tshirt";
-import React from 'react';
-
+import React from "react";
 
 export default function TshirtCreateForm() {
   const [formData, setFormData] = useState({
@@ -18,7 +17,7 @@ export default function TshirtCreateForm() {
   const postForm = async () => {
     const Tshirt = await createTshirt(formData);
     if (Tshirt.status === 201) {
-      return navigate();
+      return navigate("/created-tshirt");
     }
     setInfo(Tshirt.message);
   }
@@ -28,102 +27,132 @@ export default function TshirtCreateForm() {
   }
 
   const handleInput = (name, value) => {
-  setFormData({ ...formData, [name]: value });
-};
-
+    setFormData({ ...formData, [name]: value });
+  }
 
   const handlePost = (e) => {
     e.preventDefault();
     postForm();
   }
 
+  // Jednoduchá kontrola platnosti formuláře
+  const isFormValid = formData.customer && formData.color && formData.text && formData.size && formData.logo;
+  const loading = false; // Simulace loading stavu
+
   return (
-    <>
-      <h1>Create Tshirt</h1>
-      <form className="space-y-6">
-        <h2 className="text-3xl font-bold mb-6">Vytvoř si vlastní tričko</h2>
-        <h3 className="text-xl font-semibold mb-2">Tvoje jméno</h3>
-        <input
-          type="text"
-          name="customer"
-          required
-          placeholder="Enter name"
-          onChange={handleChange}
-          value={formData.customer}
-        />
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Vyber barvu</h3>
-          <div className="grid grid-cols-3 gap-4">
-            {["bílá", "černá", "modrá"].map((color) => (
-              <button
-                type="button"
-                key={color}
-                className={`rounded-2xl border-2 p-4 text-lg font-medium transition-all ${formData.color === color
-                    ? "bg-yellow-100 border-yellow-500"
-                    : "border-gray-300 hover:border-yellow-400"
-                  }`}
-                onClick={() => handleInput("color", color)}
-              >
-                {color}
-              </button>
-            ))}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="max-w-lg w-full p-6 bg-white rounded-xl shadow-md">
+        <h1 className="text-4xl font-extrabold text-center mb-8 text-yellow-500">Vytvoř si vlastní tričko</h1>
+        <form onSubmit={handlePost} className="space-y-6">
+          <div>
+            <label className="block text-lg font-semibold mb-2" htmlFor="customer">Tvoje jméno</label>
+            <input
+              id="customer"
+              type="text"
+              name="customer"
+              placeholder="Zadej své jméno"
+              value={formData.customer}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            />
           </div>
-        </div>
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Vyber velikost</h3>
-          <div className="grid grid-cols-3 gap-4">
-            {["M", "L", "XL"].map((size) => (
-              <button
-                type="button"
-                key={size}
-                className={`rounded-2xl border-2 p-4 text-lg font-medium transition-all ${formData.size === size
-                    ? "bg-yellow-100 border-yellow-500"
-                    : "border-gray-300 hover:border-yellow-400"
-                  }`}
-                onClick={() => handleInput("size", size)}
-              >
-                {size}
-              </button>
-            ))}
+
+          <fieldset>
+            <legend className="text-lg font-semibold mb-2">Vyber barvu</legend>
+            <div className="grid grid-cols-3 gap-4">
+              {["bílá", "černá", "modrá"].map(color => (
+                <button
+                  key={color}
+                  type="button"
+                  onClick={() => handleInput("color", color)}
+                  className={`cursor-pointer rounded-2xl border-2 p-4 text-lg font-medium transition-colors
+                    ${formData.color === color
+                      ? "bg-yellow-300 border-yellow-500 text-white shadow-md"
+                      : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-100 text-gray-700"
+                    }`}
+                  aria-pressed={formData.color === color}
+                >
+                  {color}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend className="text-lg font-semibold mb-2">Vyber velikost</legend>
+            <div className="grid grid-cols-3 gap-4">
+              {["M", "L", "XL"].map(size => (
+                <button
+                  key={size}
+                  type="button"
+                  onClick={() => handleInput("size", size)}
+                  className={`cursor-pointer rounded-2xl border-2 p-4 text-lg font-medium transition-colors
+                    ${formData.size === size
+                      ? "bg-yellow-300 border-yellow-500 text-white shadow-md"
+                      : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-100 text-gray-700"
+                    }`}
+                  aria-pressed={formData.size === size}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
+          <div>
+            <label className="block text-lg font-semibold mb-2" htmlFor="text">Napiš svůj text na triko</label>
+            <input
+              id="text"
+              type="text"
+              name="text"
+              placeholder="Tvůj text na tričko"
+              value={formData.text}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            />
           </div>
-        </div>
-        <h3 className="text-xl font-semibold mb-2">Napiš svůj text na triko</h3>
-        <input
-          type="text"
-          name="text"
-          required
-          placeholder="Enter text"
-          onChange={handleChange}
-          value={formData.text}
-        />
-         <div>
-          <h3 className="text-xl font-semibold mb-2">Chceš nálepku?</h3>
-          <div className="grid grid-cols-3 gap-4">
-            {["Ano", "Ne"].map((logo) => (
-              <button
-                type="button"
-                key={logo}
-                className={`rounded-2xl border-2 p-4 text-lg font-medium transition-all ${formData.logo === logo
-                    ? "bg-yellow-100 border-yellow-500"
-                    : "border-gray-300 hover:border-yellow-400"
-                  }`}
-                onClick={() => handleInput("logo", logo)}
-              >
-                {logo}
-              </button>
-            ))}
-          </div>
-        </div>
-        <Link to={"/created-tshirt"}>
-          <button onClick={handlePost}>
-            Add Tshirt
+
+          <fieldset>
+            <legend className="text-lg font-semibold mb-2">Chceš nálepku?</legend>
+            <div className="grid grid-cols-2 gap-4 max-w-xs">
+              {["Ano", "Ne"].map(option => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => handleInput("logo", option)}
+                  className={`cursor-pointer rounded-2xl border-2 p-4 text-lg font-medium transition-colors
+                    ${formData.logo === option
+                      ? "bg-yellow-300 border-yellow-500 text-white shadow-md"
+                      : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-100 text-gray-700"
+                    }`}
+                  aria-pressed={formData.logo === option}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
+          <button
+            type="submit"
+            disabled={!isFormValid || loading}
+            className={`w-full py-3 rounded-xl font-bold text-white transition
+              ${isFormValid && !loading ? "bg-yellow-400 hover:bg-yellow-500" : "bg-yellow-200 cursor-not-allowed"}`}
+          >
+            {loading ? "Odesílám..." : "Přidat tričko"}
           </button>
-        </Link>
-      </form>
-      <p>{info}</p>
-      <Link to={"/"}>
-        <p>Go back</p>
-      </Link>
-    </>
-  )
+        </form>
+
+        {info && <p className="mt-4 text-center text-red-500">{info}</p>}
+
+        <div className="mt-6 text-center">
+          <Link to="/" className="text-yellow-600 hover:underline font-semibold">
+            Zpět na hlavní stránku
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }

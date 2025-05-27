@@ -116,7 +116,7 @@ export default function TshirtCreateForm() {
 
           <fieldset>
             <legend className="text-lg font-semibold mb-2">Chceš nálepku?</legend>
-            <div className="grid grid-cols-2 gap-4 max-w-xs">
+            <div className="grid grid-cols-2 gap-4">
               {["Ano", "Ne"].map(option => (
                 <button
                   key={option}

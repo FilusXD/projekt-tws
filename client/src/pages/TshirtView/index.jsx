@@ -56,8 +56,8 @@ export default function TshirtView() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="max-w-3xl w-full bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="min-h-screen flex items-center justify-center bg-purple-100 p-4">
+    <div className="max-w-3xl w-full bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col items-center">
           <img
             src={colorImages[Tshirt.color]}

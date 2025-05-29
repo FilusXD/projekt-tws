@@ -35,14 +35,13 @@ export default function TshirtCreateForm() {
     postForm();
   }
 
-  // Jednoduchá kontrola platnosti formuláře
   const isFormValid = formData.customer && formData.color && formData.text && formData.size && formData.logo;
-  const loading = false; // Simulace loading stavu
+  const loading = false;
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="max-w-lg w-full p-6 bg-white rounded-xl shadow-md">
-        <h1 className="text-4xl font-extrabold text-center mb-8 text-yellow-500">Vytvoř si vlastní tričko</h1>
+        <h1 className="text-4xl font-extrabold text-center mb-8 text-purple-700">Vytvoř si vlastní tričko</h1>
         <form onSubmit={handlePost} className="space-y-6">
           <div>
             <label className="block text-lg font-semibold mb-2" htmlFor="customer">Tvoje jméno</label>
@@ -54,7 +53,7 @@ export default function TshirtCreateForm() {
               value={formData.customer}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
             />
           </div>
 
@@ -68,8 +67,8 @@ export default function TshirtCreateForm() {
                   onClick={() => handleInput("color", color)}
                   className={`cursor-pointer rounded-2xl border-2 p-4 text-lg font-medium transition-colors
                     ${formData.color === color
-                      ? "bg-yellow-300 border-yellow-500 text-white shadow-md"
-                      : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-100 text-gray-700"
+                      ? "bg-purple-600 border-purple-700 text-white shadow-md"
+                      : "border-gray-300 hover:border-purple-400 hover:bg-purple-100 text-gray-700"
                     }`}
                   aria-pressed={formData.color === color}
                 >
@@ -89,8 +88,8 @@ export default function TshirtCreateForm() {
                   onClick={() => handleInput("size", size)}
                   className={`cursor-pointer rounded-2xl border-2 p-4 text-lg font-medium transition-colors
                     ${formData.size === size
-                      ? "bg-yellow-300 border-yellow-500 text-white shadow-md"
-                      : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-100 text-gray-700"
+                      ? "bg-purple-600 border-purple-700 text-white shadow-md"
+                      : "border-gray-300 hover:border-purple-400 hover:bg-purple-100 text-gray-700"
                     }`}
                   aria-pressed={formData.size === size}
                 >
@@ -110,7 +109,7 @@ export default function TshirtCreateForm() {
               value={formData.text}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
             />
           </div>
 
@@ -124,8 +123,8 @@ export default function TshirtCreateForm() {
                   onClick={() => handleInput("logo", option)}
                   className={`cursor-pointer rounded-2xl border-2 p-4 text-lg font-medium transition-colors
                     ${formData.logo === option
-                      ? "bg-yellow-300 border-yellow-500 text-white shadow-md"
-                      : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-100 text-gray-700"
+                      ? "bg-purple-600 border-purple-700 text-white shadow-md"
+                      : "border-gray-300 hover:border-purple-400 hover:bg-purple-100 text-gray-700"
                     }`}
                   aria-pressed={formData.logo === option}
                 >
@@ -139,7 +138,7 @@ export default function TshirtCreateForm() {
             type="submit"
             disabled={!isFormValid || loading}
             className={`w-full py-3 rounded-xl font-bold text-white transition
-              ${isFormValid && !loading ? "bg-yellow-400 hover:bg-yellow-500" : "bg-yellow-200 cursor-not-allowed"}`}
+              ${isFormValid && !loading ? "bg-purple-600 hover:bg-purple-700" : "bg-purple-200 cursor-not-allowed"}`}
           >
             {loading ? "Odesílám..." : "Přidat tričko"}
           </button>
@@ -148,7 +147,7 @@ export default function TshirtCreateForm() {
         {info && <p className="mt-4 text-center text-red-500">{info}</p>}
 
         <div className="mt-6 text-center">
-          <Link to="/" className="text-yellow-600 hover:underline font-semibold">
+          <Link to="/" className="text-purple-600 hover:underline font-semibold">
             Zpět na hlavní stránku
           </Link>
         </div>

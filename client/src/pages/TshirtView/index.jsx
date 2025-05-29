@@ -5,7 +5,6 @@ import whiteShirt from "../../images/white-shirt.png"
 import blackShirt from "../../images/black-shirt.png"
 import blueShirt from "../../images/blue-shirt.png"
 
-
 export default function TshirtView() {
   const { id } = useParams();
   const [Tshirt, setTshirt] = useState();
@@ -57,7 +56,7 @@ export default function TshirtView() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-purple-100 p-4">
-    <div className="max-w-3xl w-full bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-3xl w-full bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col items-center">
           <img
             src={colorImages[Tshirt.color]}
@@ -66,20 +65,20 @@ export default function TshirtView() {
           />
           <Link
             to={`/update-tshirt/${id}`}
-            className="mt-4 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-6 rounded-lg transition"
+            className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-6 rounded-lg transition"
           >
             Upravit objednávku
           </Link>
           <Link
             to="/view-tshirt"
-            className="mt-2 text-yellow-600 hover:underline text-sm font-semibold"
+            className="mt-2 text-purple-600 hover:underline text-sm font-semibold"
           >
             Zpět
           </Link>
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold text-yellow-500">
+          <h1 className="text-3xl font-bold text-purple-500">
             Objednávka: {Tshirt.customer}
           </h1>
           <p><span className="font-semibold">Barva:</span> {Tshirt.color}</p>
@@ -96,7 +95,7 @@ export default function TshirtView() {
               placeholder="Zadej jméno zákazníka"
               value={formData}
               onChange={(e) => setFormData(e.target.value)}
-              className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+              className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
             />
             <button
               type="submit"

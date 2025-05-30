@@ -1,20 +1,58 @@
-body {
-  background: linear-gradient(135deg, #1a1a1a, #333333);
-  font-family: 'Inter', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Pokud používáš Tailwind, měl bys mít také @import "tailwindcss/base", @import "tailwindcss/components", @import "tailwindcss/utilities"; */
+/* Např. pokud je tvůj Tailwind nastaven, tak takto: */
+
+
+
+/* --- DŮLEŽITÁ PRAVIDLA PRO ROZTAŽENÍ VÝŠKY --- */
+html, body, #root {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%; /* Zajišťuje, že se html a body roztáhnou na plnou výšku */
+  /* POZOR: overflow-x: hidden; je pro skrytí horizontálního scrollu, není problém s výškou */
+  overflow-x: hidden; 
 }
 
+body {
+  /* ZDE MUSÍ BÝT TYTO VLASTNOSTI */
+  display: flex; /* Klíčové: Nastaví body jako flex kontejner */
+  flex-direction: column; /* Klíčové: Zarovnává obsah body ve sloupci */
+  min-height: 100vh; /* Klíčové: Zajišťuje, že body je alespoň vysoké jako viewport */
+  
+  /* Tvůj další styling pro body (např. font-family, background-color) */
+  background-color: #ffffff; /* Původní bílé pozadí */
+  font-family: 'Poppins', sans-serif;
+  /* margin a padding jsou již nahoře v html, body, #root */
+}
 
+/* ... (ostatní tvé třídy jako highlightedtext, bgcontainer, dark-theme-page atd.) ... */
+.highlightedtext {
+  color: #15aabf;
+}
+
+.bgcontainer {
+  background-color: #15aabf;
+}
+
+.highlightedtext2 {
+  color: #ffd43b;
+}
+
+.bgcontainer2 {
+  background-color: #ffd43b;
+}
+
+.dark-theme-page {
+  background-color: #242424; 
+  color: #e0e0e0; 
+}
 
 nav a {
-
   margin-left: 1rem;
   text-decoration: none;
   font-weight: 600;
 }
-
 
 p {
   max-width: 600px;
@@ -22,7 +60,8 @@ p {
 }
 
 footer {
-  
   padding: 1rem;
   text-align: center;
 }
+
+

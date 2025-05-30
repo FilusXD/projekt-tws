@@ -6,29 +6,34 @@ export default function Home() {
     <div
       className="w-screen h-screen flex flex-col m-0 p-0"
       style={{
-        background: "#f5f3ff", // hodně světlá fialová (Tailwind: purple-50)
+        background: "#f5f3ff", 
         color: "#1e3a8a",
       }}
     >
-      
 
-      {/* Hlavní obsah */}
       <main className="flex flex-1 flex-col md:flex-row">
         <div className="flex-1 flex flex-col justify-center items-start p-8 md:p-16">
-          <h2 className="text-5xl md:text-7xl font-extrabold text-purple-800 drop-shadow-lg mb-6">
+          <h2 className="highlightedtext text-5xl md:text-7xl font-extrabold text-purple-800 drop-shadow-lg mb-6">
             Vytvoř si vlastní tričko!
           </h2>
-          <p className="text-lg md:text-2xl text-purple-700 mb-8 max-w-2xl">
-            Vyber si barvu, velikost a přidej vlastní text nebo logo. Vytvoř si originální tričko, které tě vystihuje!
+          <p className=" text-lg md:text-2xl text-black mb-8 max-w-2xl">
+            Vyber si barvu, velikost a přidej vlastní text nebo logo. Vytvoř si
+            originální tričko, které tě vystihuje!
           </p>
           <div className="flex gap-4 md:gap-8">
             <Link to="/add-tshirt">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 text-lg md:text-xl">
+              <button
+                style={{ cursor: "pointer" }}
+                className="bgcontainer text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 text-lg md:text-xl"
+              >
                 Vytvořit tričko
               </button>
             </Link>
             <Link to="/view-tshirt">
-              <button className="bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 text-lg md:text-xl">
+              <button
+                style={{ cursor: "pointer" }}
+                className="bgcontainer text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg transform hover:scale-105 transition duration-300 text-lg md:text-xl"
+              >
                 Zobrazit objednávky
               </button>
             </Link>
@@ -42,8 +47,6 @@ export default function Home() {
           />
         </div>
       </main>
-
-      
     </div>
   );
 }

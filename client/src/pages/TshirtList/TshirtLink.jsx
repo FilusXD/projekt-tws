@@ -10,6 +10,13 @@ export default function TshirtLink({ _id, color, size, text, logo, customer }) {
     modrá: blueShirt,
   };
 
+<<<<<<< HEAD
+  // Zjištění barvy textu pro lepší kontrast na tmavém pozadí karty
+  const textColor = color === "bílá" ? "text-white-900" : "text-white";
+  const customerColor = "text-orange-300"; // Světlejší oranžová pro jméno zákazníka
+
+=======
+>>>>>>> baae4128fd331b8acf5875ccadc7dee1e200819b
   return (
     <Link
       to={`/tshirt/${_id}`}

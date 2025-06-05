@@ -1,79 +1,59 @@
+const API_URL = "http://localhost:3000/tshirts";
 
+const processResponse = async (response) => {
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    return {
+      status: response.status,
+      message: errorText || "Došlo k chybě na serveru.",
+      payload: null,
+    };
+  }
+
+  if (response.status === 204) {
+      return { status: response.status, payload: {} };
+  }
+
+  const data = await response.json();
+  return {
+    status: response.status,
+    payload: data.payload,
+    message: data.message,
+  };
+};
 
 export const getAllTshirts = async () => {
-    const req = await fetch("http://localhost:3000/tshirts", {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "GET"
-    });
-    const data = await req.json();
-    return {
-        status: req.status,
-        payload: data.payload,
-        message: data.message
-    }
-}
+  const response = await fetch(API_URL);
+  return processResponse(response);
+};
+
 export const getTshirtById = async (id) => {
-    const req = await fetch(`http://localhost:3000/tshirts/${id}`, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "GET"
-    });
-    const data = await req.json();
-    return {
-        status: req.status,
-        payload: data.payload,
-        message: data.message
-    }
-}
+  const response = await fetch(`${API_URL}/${id}`);
+  return processResponse(response);
+};
+
 export const createTshirt = async (formData) => {
-    const req = await fetch(`http://localhost:3000/tshirts`, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "POST",
-        body: JSON.stringify(formData)
-    });
-    const data = await req.json();
-    return {
-        status: req.status,
-        payload: data.payload,
-        message: data.message
-    }
-}
-export const updateTshirt = async (formData, id) => {
-    const req = await fetch(`http://localhost:3000/tshirts/${id}`, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "PUT",
-        body: JSON.stringify(formData)
-    });
-    const data = await req.json();
-    return {
-        status: req.status,
-        payload: data.payload,
-        message: data.message
-    }
-}
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+  return processResponse(response);
+};
+
+export const updateTshirt = async (id, formData) => {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+  return processResponse(response);
+};
+
 export const deleteTshirt = async (id) => {
-    const req = await fetch(`http://localhost:3000/tshirts/${id}`, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "DELETE"
-    });
-    const data = await req.json();
-    return {
-        status: req.status,
-        payload: data.payload,
-        message: data.message
-    }
-}
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+  });
+  return processResponse(response);
+};

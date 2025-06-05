@@ -1,44 +1,90 @@
+import React from "react";
 import { Link } from "react-router-dom";
+
 import whiteShirt from "../../images/white-shirt.png";
 import blackShirt from "../../images/black-shirt.png";
 import blueShirt from "../../images/blue-shirt.png";
 
-export default function TshirtLink({ _id, color, size, text, logo, customer }) {
+export default function TshirtLink({
+  _id,
+  id,
+  customer,
+  color,
+  size,
+  logo,
+  text,
+}) {
+  const TShirtId = _id || id;
+  const linkPath = TShirtId ? `/tshirt/${TShirtId}` : "#";
+
   const colorImages = {
     bílá: whiteShirt,
     černá: blackShirt,
     modrá: blueShirt,
   };
 
-<<<<<<< HEAD
-  // Zjištění barvy textu pro lepší kontrast na tmavém pozadí karty
-  const textColor = color === "bílá" ? "text-white-900" : "text-white";
-  const customerColor = "text-orange-300"; // Světlejší oranžová pro jméno zákazníka
+  const tshirtImage = colorImages[color?.toLowerCase()] || whiteShirt;
 
-=======
->>>>>>> baae4128fd331b8acf5875ccadc7dee1e200819b
   return (
     <Link
-      to={`/tshirt/${_id}`}
-      className="block bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 p-6"
+      to={linkPath}
+      className="block rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden"
+      style={{
+        backgroundColor: "#555555",
+      }}
     >
-      <div className="flex flex-col items-center text-center space-y-2">
+      <div
+        className="w-full h-48 sm:h-56 flex items-center justify-center"
+        style={{ backgroundColor: "#4a4a4a" }}
+      >
         <img
-          src={colorImages[color]}
-          alt={`Tričko ${color}`}
-          className="w-28 h-28 object-contain mb-4"
+          src={tshirtImage}
+          alt={`Tričko ${color || ""}`}
+          className="max-h-full max-w-full object-contain p-2"
         />
-        <h3 className="text-xl font-semibold text-purple-800">{customer}</h3>
-        <p className="text-md text-indigo-800 italic">"{text}"</p>
-        <p className="text-sm text-gray-600">
-          <span className="font-medium text-indigo-900">Barva:</span> {color}
-        </p>
-        <p className="text-sm text-gray-600">
-          <span className="font-medium text-indigo-900">Velikost:</span> {size}
-        </p>
-        <p className="text-sm text-gray-600">
-          <span className="font-medium text-indigo-900">Logo:</span> {logo}
-        </p>
+      </div>
+
+      <div style={{ padding: "1.5rem" }}>
+        <h3
+          className="text-xl font-semibold mb-3 truncate"
+          style={{ color: "#ffd43b" }}
+        >
+          {customer || "Neznámý zákazník"}
+        </h3>
+        <div className="space-y-1.5 text-sm" style={{ color: "#e0e0e0" }}>
+          <div>
+            <span className="font-medium" style={{ color: "#a0a0a0" }}>
+              Zákazník:{" "}
+            </span>
+            {customer || "N/A"}
+          </div>
+          <div>
+            <span className="font-medium" style={{ color: "#a0a0a0" }}>
+              Barva:{" "}
+            </span>
+            {color || "N/A"}
+          </div>
+          <div>
+            <span className="font-medium" style={{ color: "#a0a0a0" }}>
+              Velikost:{" "}
+            </span>
+            {size || "N/A"}
+          </div>
+          {text && (
+            <div>
+              <span className="font-medium" style={{ color: "#a0a0a0" }}>
+                Text:{" "}
+              </span>
+              <span className="italic">"{text}"</span>
+            </div>
+          )}
+          <div>
+            <span className="font-medium" style={{ color: "#a0a0a0" }}>
+              Logo:{" "}
+            </span>
+            {logo || "N/A"}
+          </div>
+        </div>
       </div>
     </Link>
   );
